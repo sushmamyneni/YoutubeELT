@@ -1,6 +1,6 @@
 import unittest
 
-from video_stats import _weekly_change, latest_video_rows
+from youtube_trends_business.analytics import latest_video_rows, weekly_change
 
 
 class GrowthCalculationTests(unittest.TestCase):
@@ -10,14 +10,14 @@ class GrowthCalculationTests(unittest.TestCase):
             {"captured_at": "2026-09-11T00:00:00+00:00", "subscriber_count": 11_000},
         ]
 
-        weekly_change, weekly_percent = _weekly_change(snapshots, "subscriber_count")
-        self.assertEqual(weekly_change, 700)
+        weekly_subscribers, weekly_percent = weekly_change(snapshots, "subscriber_count")
+        self.assertEqual(weekly_subscribers, 700)
         self.assertAlmostEqual(weekly_percent, 7.0)
 
     def test_growth_is_unavailable_without_two_snapshots(self):
         snapshots = [{"captured_at": "2026-09-01T00:00:00+00:00", "subscriber_count": 10_000}]
 
-        self.assertEqual(_weekly_change(snapshots, "subscriber_count"), (None, None))
+        self.assertEqual(weekly_change(snapshots, "subscriber_count"), (None, None))
 
 
 class VideoSignalTests(unittest.TestCase):

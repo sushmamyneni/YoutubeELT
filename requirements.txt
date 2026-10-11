@@ -1,3 +1,10 @@
-pandas>=2.2,<4
-requests>=2.32,<3
-streamlit>=1.45,<2
+# Combined local development install: install both projects in editable mode.
+# The business API and presentation dependencies are declared in their own
+# pyproject.toml files, so package lists do not need to be duplicated here.
+#
+# For independent deployments, install only the project needed by that host:
+#   python -m pip install -e ./business
+#   python -m pip install -e ./presentation
+# See README.md for environment variables and service startup instructions.
+-e ./business
+-e ./presentation
