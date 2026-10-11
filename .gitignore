@@ -1,0 +1,5 @@
+venv/
+__pycache__/
+*.py[cod]
+youtube_trends.sqlite3
+.env
